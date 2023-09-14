@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/abril_fatface</item>
+        <item>@font/actor</item>
+        <item>@font/adamina</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/b612</item>
+        <item>@font/baloo_chettan</item>
+        <item>@font/inter_bold</item>
+        <item>@font/inter_semibold</item>
+        <item>@font/roboto_mono_thin</item>
+    </array>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#FE4F08</color>
+    <color name="grey">#F5F6F9</color>
+    <color name="red">#b90e0a</color>
+    <color name="Barnred">#7c0a02</color>
+    <color name="Mahogany">#420d09</color>
+
+    <integer-array name="progress">
+        <item>@color/white</item>
+        <item>@color/red</item>
+        <item>@color/black</item>
+    </integer-array>
+</resources>

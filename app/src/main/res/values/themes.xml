@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TechApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/red</item>
+        <item name="android:windowBackground">@color/red</item>
+        <item name="android:navigationBarColor">@color/red</item>
+        <item name="colorPrimary">@color/red</item>
+    </style>
+
+    <style name="Theme.TechApp" parent="Base.Theme.TechApp" />
+
+</resources>
