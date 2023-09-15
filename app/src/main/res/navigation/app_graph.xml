@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_searchFragment_to_sheetFragment2"
             app:destination="@id/sheetFragment2" />
+        <action
+            android:id="@+id/action_searchFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
     </fragment>
     <dialog
         android:id="@+id/sheetFragment2"
@@ -105,6 +108,15 @@
         tools:layout="@layout/fragment_sheet" >
         <action
             android:id="@+id/action_sheetFragment2_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/filterFragment"
+        android:name="com.ruhlanusubov.techapp.ui.sheet.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_filterFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
     </dialog>
 </navigation>

@@ -3,5 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="desc">"Məhsul və ya kateqoriya üzrə axtarış.."</string>
+    <string name="filter">Filter</string>
+    <string name="kateqoriya">Kateqoriya</string>
+    <string name="smartphones">smartphones</string>
+    <string name="laptops">laptops</string>
+    <string name="limit">Limit</string>
+    <string name="_5">5</string>
+    <string name="_10">10</string>
+    <string name="_15">15</string>
 
 </resources>

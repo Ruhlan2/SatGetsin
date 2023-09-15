@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ruhlanusubov.techapp.databinding.ItemCategorySearchBinding
+import com.ruhlanusubov.techapp.model.modelcategory.Category
 
 class MostviewedAdapter: RecyclerView.Adapter<MostviewedAdapter.MostviewedHolder>() {
-    private val title=ArrayList<String>()
+
+    private val title=Category()
     inner class MostviewedHolder(val binding: ItemCategorySearchBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MostviewedHolder {
@@ -22,7 +24,7 @@ class MostviewedAdapter: RecyclerView.Adapter<MostviewedAdapter.MostviewedHolder
         val item=title[position]
         holder.binding.name.text=item
     }
-    fun updatelist(list: List<String>){
+    fun updatelist(list:Category){
         title.clear()
         title.addAll(list)
         notifyDataSetChanged()

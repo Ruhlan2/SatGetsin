@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.loginFragment ,
                     R.id.registerFragment,
                     R.id.searchFragment,
+                    R.id.sheetFragment2,
+                    R.id.filterFragment,
                     R.id.detailsFragment->{
                             binding.bottomnav.visibility= View.GONE
                         }else->{

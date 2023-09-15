@@ -23,10 +23,16 @@ interface Service {
     fun getcategories():Call<Category>
 
     @GET("products/search")
-    fun getsearch(@Query("q") q:String):Call<Responseproduct>
+    fun getsearch(
+        @Query("q") q:String,
+        /*
+        @Query("select") title:String,
+        @Query("limit") limit:Int
 
-    @GET("products")
-    fun ascending(@Query("select") select:String):Call<Responseproduct>
+         */
+    ):Call<Responseproduct>
+
+
 
 
 
