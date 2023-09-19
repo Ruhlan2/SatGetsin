@@ -14,7 +14,7 @@ import com.ruhlanusubov.techapp.databinding.FragmentProfileBinding
 class ProfileFragment : Fragment() {
     private var _binding:FragmentProfileBinding?=null
     private val binding:FragmentProfileBinding get() = _binding!!
-
+    private lateinit var sp:SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,15 +28,20 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setup()
+       setup()
     }
 
     private fun setup(){
-        val sharedPreferences=requireContext().getSharedPreferences("preference", Context.MODE_PRIVATE)
-        val link=sharedPreferences.getString("img",null)
-        val user=sharedPreferences.getString("username",null)
-        Glide.with(requireContext()).load(link).into(binding.userimg)
-        binding.username.text=user
+        sp=requireContext().getSharedPreferences("User", Context.MODE_PRIVATE)
+        with(binding){
+            val first=sp.getString("first",null)
+            val last=sp.getString("last",null)
+            username.text="$first $last"
+            val url=sp.getString("image",null)
+            Glide.with(requireContext()).load(url).into(userimg)
+            val email=sp.getString("email",null)
+            emailText.text=email
+        }
 
     }
     override fun onDestroy() {

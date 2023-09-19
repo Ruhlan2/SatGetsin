@@ -22,6 +22,7 @@ class LoginFragment : Fragment() {
     private var _binding:FragmentLoginBinding?=null
     private val binding:FragmentLoginBinding get() = _binding!!
     private val service=ApiUtils.getService()
+    private lateinit var sp:SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,35 +48,57 @@ class LoginFragment : Fragment() {
         }
     }
     private fun setup(){
-            val user=binding.email.text.toString()
-            val password=binding.password.text.toString()
+           with(binding){
+               val user=email.text.toString()
+               val password=password.text.toString()
 
-        if(user.isNotEmpty()&&password.isNotEmpty()){
-           findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-        }else{
-            Toast.makeText(requireContext(),"Please fill blanks",Toast.LENGTH_SHORT).show()
-        }
+               if(user.isNotEmpty()&&password.isNotEmpty()){
+                   validation(user,password)
+               }else{
+                   Toast.makeText(requireContext(),"Please fill blanks",Toast.LENGTH_SHORT).show()
+               }
+           }
 
-        val response=service.loginuser(user,password)
 
-        response.enqueue(object:Callback<UserResponse>{
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                if(response.isSuccessful){
-                    response.body()?.let {
-                        Log.e("status",it.toString())
-                         val sharedPreferences=requireContext().getSharedPreferences("preference",Context.MODE_PRIVATE)
-                        val editor:SharedPreferences.Editor=sharedPreferences.edit()
-                        editor.putString("username",it.username)
-                        editor.putString("img",it.image)
+
+    }
+    private fun validation(
+    username:String,
+    password:String
+    ){
+            service.loginuser(username,password).enqueue(object: Callback<UserResponse>{
+                override fun onResponse(
+                    call: Call<UserResponse>,
+                    response: Response<UserResponse>
+                ) {
+                    if(response.isSuccessful){
+                        response.body()?.let {
+                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                            sp=requireContext().getSharedPreferences("User",Context.MODE_PRIVATE)
+                            it.firstName?.let { first->
+                                sp.edit().putString("first",first).apply()
+                            }
+                            it.lastName?.let { last->
+                                sp.edit().putString("last",last).apply()
+                            }
+                            it.image?.let { url->
+                                sp.edit().putString("image",url).apply()
+
+                            }
+                            it.email?.let {email->
+                                sp.edit().putString("email",email).apply()
+                            }
+                        }
+                    }else{
+                        Toast.makeText(requireContext(),"Failed",Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_SHORT).show()
-            }
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                    Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_SHORT).show()
+                }
 
-        })
+            })
     }
 
 

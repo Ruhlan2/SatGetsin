@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
         setadapter()
         setcategoryadapter()
         requestdata()
-        requestcategory()
 
 
     }
@@ -60,6 +59,7 @@ class HomeFragment : Fragment() {
         binding.categoryrv.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         binding.categoryrv.adapter=category
     }
+
     private fun requestcategory(){
         val cresponse=service.getcategories()
 
@@ -68,7 +68,6 @@ class HomeFragment : Fragment() {
            if(response.isSuccessful){
                response.body()?.let {
                    category.updateCategory(it)
-
                }
            }
        }
@@ -123,8 +122,10 @@ class HomeFragment : Fragment() {
              ) {
                  if(response.isSuccessful){
                      response.body()?.let {
+                         requestcategory()
                          it.products?.let { it1 -> adapter.updatelist(it1) }
                          slider(it.products?: emptyList())
+                         binding.loading.visibility=View.GONE
                      }
                  }else{
                      Toast.makeText(requireContext(),"Error",Toast.LENGTH_SHORT).show()

@@ -15,8 +15,7 @@ class FilterFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentFilterBinding?= null
     private val binding: FragmentFilterBinding get() = _binding!!
     private var category:String?=null
-    private var limit:Int=30
-
+    private var limit:Int=2
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +27,6 @@ class FilterFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         data()
        binding.savebtn.setOnClickListener {
            share()

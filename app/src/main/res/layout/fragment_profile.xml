@@ -65,18 +65,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/emailText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:drawableStart="@drawable/date_range_svgrepo_com"
-            android:drawableTint="@color/white"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center_vertical"
-            android:text="Date"
+            android:text="Email"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+            app:drawableStartCompat="@drawable/person"
+            app:drawableTint="@color/white" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
@@ -86,7 +86,7 @@
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4">
+            app:layout_constraintTop_toBottomOf="@+id/emailText">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

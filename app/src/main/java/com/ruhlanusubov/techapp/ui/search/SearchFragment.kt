@@ -1,20 +1,19 @@
 package com.ruhlanusubov.techapp.ui.search
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.ruhlanusubov.techapp.R
-import com.ruhlanusubov.techapp.adapter.CategoryAdapter
 import com.ruhlanusubov.techapp.adapter.MostviewedAdapter
 import com.ruhlanusubov.techapp.adapter.SearchAdapter
 import com.ruhlanusubov.techapp.api.ApiUtils
@@ -22,6 +21,7 @@ import com.ruhlanusubov.techapp.databinding.FragmentSearchBinding
 import com.ruhlanusubov.techapp.model.modelcategory.Category
 import com.ruhlanusubov.techapp.model.modelproduct.Product
 import com.ruhlanusubov.techapp.model.modelproduct.Responseproduct
+import com.ruhlanusubov.techapp.ui.sheet.SheetFragment
 import com.shashank.sony.fancytoastlib.FancyToast
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +33,7 @@ class SearchFragment : Fragment() {
     private val service=ApiUtils.getService()
     private val searchAdapter=SearchAdapter()
     private val categoryadapter=MostviewedAdapter()
+    private lateinit var sp:SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,79 +46,153 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mostviewed()
-        searchtext()
         searchadapter()
         adapter()
+        mostviewed()
         bottomsheet()
+        searchtext()
+
     }
+    private fun searchtext() {
+
+        sp=requireContext().getSharedPreferences("filters", Context.MODE_PRIVATE)
+        val categoryfilter = sp.getString("category", null)
+        val limit = sp.getInt("limit",2)
+        with(binding) {
+
+            if(categoryfilter!=null){
+                filter(categoryfilter,limit)
+            }else{
+                only(limit)
+            }
+            searchtext.addTextChangedListener{
+                if(it!=null){
+                    val search=it.toString()
+                    if(search.isNotEmpty()){
+                        onlySearch(search)
+                    }else{
+                        Toast.makeText(requireContext(),"Empty",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+
+            }
+
+
+        }
+
     private fun bottomsheet(){
         binding.ascendingbtn.setOnClickListener {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSheetFragment2())
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSheetFragment())
         }
         binding.filterbtn.setOnClickListener {
             findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToFilterFragment())
         }
-
-
     }
-    private fun searchtext(){
-        binding.searchtext.addTextChangedListener {
+    private fun filter(
+        category:String,
+        limit:Int
+    ){
+        service.filter(category,limit).enqueue(object: Callback<Responseproduct>{
+            override fun onResponse(
+                call: Call<Responseproduct>,
+                response: Response<Responseproduct>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        searchAdapter.updatelist(it.products?: emptyList())
+                       // Toast.makeText(requireContext(),"success",Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
+                }
+            }
 
-            val sp=requireContext().getSharedPreferences("filters", Context.MODE_PRIVATE)
-            val categoryfilter=sp.getString("category",null)
-            val limit=sp.getInt("limit",30)
-            Log.e("categoryfilter","$categoryfilter $limit")
-           if(it!=null){
+            override fun onFailure(call: Call<Responseproduct>, t: Throwable) {
+                Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_SHORT).show()
+            }
 
-               val search=it.toString()
+        })
+    }
+    private fun byCategory(
+       category: String
+    ){
+        service.onlyCategory(category).enqueue(object:Callback<Responseproduct>{
+            override fun onResponse(
+                call: Call<Responseproduct>,
+                response: Response<Responseproduct>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        searchAdapter.updatelist(it.products?: emptyList())
+                        Toast.makeText(requireContext(),"$category success",Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
+                }
+            }
 
-                   val brand = service.getsearch(search)
+            override fun onFailure(call: Call<Responseproduct>, t: Throwable) {
+                Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_SHORT).show()
+            }
 
-                   brand.enqueue(object : Callback<Responseproduct> {
-                       override fun onResponse(
-                           call: Call<Responseproduct>,
-                           response: Response<Responseproduct>
-                       ) {
-                           if (response.isSuccessful) {
-                               response.body()?.let {
-                                   searchAdapter.updatelist(it.products ?: emptyList())
-                               }
-                           } else {
-                               FancyToast.makeText(
-                                   requireContext(),
-                                   "Error",
-                                   FancyToast.LENGTH_SHORT,
-                                   FancyToast.ERROR,
-                                   false
-                               ).show()
-                           }
-                       }
+        })
+    }
+    private fun only(
+        limit:Int
+    ){
+       service.onlyLimit(limit).enqueue(object:Callback<Responseproduct>{
+           override fun onResponse(
+               call: Call<Responseproduct>,
+               response: Response<Responseproduct>
+           ) {
+               if(response.isSuccessful){
+                   response.body()?.let {
+                       searchAdapter.updatelist(it.products?: emptyList())
+                       Toast.makeText(requireContext(),"Success",Toast.LENGTH_SHORT).show()
 
-                       override fun onFailure(call: Call<Responseproduct>, t: Throwable) {
-                           FancyToast.makeText(
-                               requireContext(),
-                               t.localizedMessage,
-                               FancyToast.LENGTH_SHORT,
-                               FancyToast.ERROR,
-                               false
-                           ).show()
-                       }
-
-                   })
-
-           }else{
-               FancyToast.makeText(requireContext(),"Empty",FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show()
+                   }
+               }else{
+                   Toast.makeText(requireContext(),Log.ERROR,Toast.LENGTH_SHORT).show()
+               }
            }
-        }
+
+           override fun onFailure(call: Call<Responseproduct>, t: Throwable) {
+               Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_SHORT).show()
+           }
+
+       })
+    }
+    private fun onlySearch(
+        search:String
+    ){
+        service.onlySearch(search).enqueue(object:Callback<Responseproduct>{
+            override fun onResponse(
+                call: Call<Responseproduct>,
+                response: Response<Responseproduct>
+            ) {
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        searchAdapter.updatelist(it.products?: emptyList())
+                    }
+                }else{
+                    Toast.makeText(requireContext(),Log.ERROR,Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Responseproduct>, t: Throwable) {
+                Toast.makeText(requireContext(),t.localizedMessage,Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
     private fun searchadapter(){
         binding.searchprod.layoutManager=GridLayoutManager(requireContext(),2)
         binding.searchprod.adapter=searchAdapter
     }
     private fun mostviewed(){
-      val request=service.getcategories()
-        request.enqueue(object:Callback<Category>{
+      service.getcategories().enqueue(object:Callback<Category>{
             override fun onResponse(call: Call<Category>, response: Response<Category>) {
                 if(response.isSuccessful){
                    response.body()?.let {

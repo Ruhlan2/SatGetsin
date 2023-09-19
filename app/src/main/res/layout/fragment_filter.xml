@@ -45,328 +45,331 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
-    <androidx.core.widget.NestedScrollView
+    <HorizontalScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
+        android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@+id/textView15">
 
-        <RadioGroup
-            android:id="@+id/rgCategory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView15">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rball"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:checked="true"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="Hamısı"
-                android:textColor="@color/black"
-                android:textSize="14sp">
-
-            </androidx.appcompat.widget.AppCompatRadioButton>
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbsmartphones"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/rgCategory"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="@string/smartphones"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            </androidx.appcompat.widget.AppCompatRadioButton>
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="Hamısı"
+                    android:textColor="@color/black"
+                    android:textSize="14sp">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rblaptop"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="@string/laptops"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                </androidx.appcompat.widget.AppCompatRadioButton>
 
-            </androidx.appcompat.widget.AppCompatRadioButton>
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbsmartphones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/smartphones"
+                    android:textColor="@color/black"
+                    android:textSize="14sp">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbfragrances"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="fragrances"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                </androidx.appcompat.widget.AppCompatRadioButton>
 
-            </androidx.appcompat.widget.AppCompatRadioButton>
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rblaptop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/laptops"
+                    android:textColor="@color/black"
+                    android:textSize="14sp">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbskincare"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="skincare"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                </androidx.appcompat.widget.AppCompatRadioButton>
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbgroceries"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="groceries"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbfragrances"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="fragrances"
+                    android:textColor="@color/black"
+                    android:textSize="14sp">
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbhomedec"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="home-decoration"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                </androidx.appcompat.widget.AppCompatRadioButton>
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbskincare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="skincare"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbfurniture"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="furniture"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbgroceries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="groceries"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbhomedec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="home-decoration"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbtops"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="tops"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbfurniture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="furniture"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbwomensdress"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="women-dresses"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbtops"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="tops"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbwomensshoes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="women-shoes"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbwomensdress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="women-dresses"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbmensshirts"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="mens-shirts"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbwomensshoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="women-shoes"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbmensshoes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="mens-shoes"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbmensshirts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="mens-shirts"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbmenswatches"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="mens-watches"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbmensshoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="mens-shoes"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbwomenswatch"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="women-watches"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbmenswatches"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="mens-watches"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbwomensbag"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="women-bags"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbwomenswatch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="women-watches"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbwomensjew"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="women-jewellery"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbwomensbag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="women-bags"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbsunglasses"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="sunglasses"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbwomensjew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="women-jewellery"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbautomotive"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="automotive"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbsunglasses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="sunglasses"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rbmotorcycle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="lighting"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
 
-            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbautomotive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="automotive"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
-                android:id="@+id/rblighting"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/radio_selector"
-                android:button="@null"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="motorcycle"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatRadioButton
+
+                    android:id="@+id/rbmotorcycle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="lighting"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+
+                    android:id="@+id/rblighting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="motorcycle"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
 
-        </RadioGroup>
+            </RadioGroup>
+        </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </HorizontalScrollView>
 
 
     <RadioGroup
